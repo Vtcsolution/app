@@ -1029,7 +1029,7 @@ const Psychics = () => {
 
                           <Button
                             variant="outline"
-                            onClick={() => navigate(`/psychic/${psychic._id}`)}
+                            onClick={() => navigate(`/medium/${psychic._id}`)}
                             className="w-full rounded-xl py-2 text-xs font-medium mt-2"
                             style={{ borderColor: colors.antiqueGold, color: colors.deepPurple }}
                           >
