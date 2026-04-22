@@ -351,7 +351,7 @@ const Home = () => {
     return status === 'online' || status === 'away';
   };
 
-  const handleShowMore = () => navigate("/psychics");
+  const handleShowMore = () => navigate("/medium");
 
   const handlePsychicSelect = async (psychic) => {
     if (!user) {
@@ -923,7 +923,7 @@ const Home = () => {
 
                           <Button
                             variant="outline"
-                            onClick={() => navigate(`/psychic/${psychic._id}`)}
+                            onClick={() => navigate(`/medium/${psychic._id}`)}
                             className="flex-1 h-9 rounded-xl text-xs font-semibold gap-1.5 transition-all hover:scale-105"
                             style={{ borderColor: colors.antiqueGold + "40", color: colors.deepPurple, backgroundColor: 'white' }}
                           >
@@ -954,7 +954,7 @@ const Home = () => {
             {humanPsychics.length === 6 && (
               <div className="flex justify-center items-center">
                 <Button
-                  onClick={() => navigate("/psychics")}
+                  onClick={() => navigate("/medium")}
                   size="lg"
                   className="rounded-full px-8 py-6 text-lg font-semibold transition-all hover:scale-105 shadow-lg"
                   style={{ backgroundColor: colors.antiqueGold, color: colors.deepPurple, boxShadow: `0 10px 40px ${colors.antiqueGold}40` }}
