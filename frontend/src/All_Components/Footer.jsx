@@ -57,26 +57,24 @@ export default function ModernFooter() {
         setFooterData(data.data);
         console.log('Footer data loaded successfully:', data.data);
       } else {
-        // If no data found, create default data structure
         console.log('No footer data found, using defaults');
-        setFooterData(null); // This will trigger default data usage
+        setFooterData(null);
       }
     } catch (error) {
       console.error('Error fetching footer data:', error);
       setError(error.message);
-      // Still set footerData to null to use defaults
       setFooterData(null);
     } finally {
       setLoading(false);
     }
   };
 
-  // Default data structure matching your static design
+  // Default data structure in FRENCH
   const defaultData = {
     company: {
       name: "HecateVoyance",
-      tagline: "SPIRITUAL GUIDANCE",
-      description: "Your trusted source for spiritual guidance, psychic readings, and personal transformation since 2020."
+      tagline: "GUIDANCE SPIRITUELLE",
+      description: "Votre source de confiance pour la guidance spirituelle, les lectures psychiques et la transformation personnelle depuis 2020."
     },
     socialMedia: {
       instagram: { url: "https://instagram.com/hecatevoyance", active: true },
@@ -87,13 +85,13 @@ export default function ModernFooter() {
       youtube: { url: "https://youtube.com/@hecatevoyance", active: true }
     },
     exploreLinks: [
-      { label: "Home", url: "/", active: true, order: 1 },
-      { label: "About Us", url: "/about", active: true, order: 2 },
-      { label: "Our Psychics", url: "/psychics", active: true, order: 3 },
-      { label: "Blogs & Articles", url: "/blogs", active: true, order: 4 }
+      { label: "Accueil", url: "/accueil", active: true, order: 1 },
+      { label: "À Propos", url: "/a-propos", active: true, order: 2 },
+      { label: "Nos Médiums", url: "/nos-mediums", active: true, order: 3 },
+      { label: "Articles", url: "/articles", active: true, order: 4 }
     ],
     legalLinks: [
-      { label: "Terms & Conditions", url: "/terms-&-conditions", active: true, order: 1 }
+      { label: "Conditions Générales", url: "/conditions-generales", active: true, order: 1 }
     ],
     contact: {
       email: {
@@ -102,14 +100,14 @@ export default function ModernFooter() {
         active: true
       },
       support: {
-        text: "Support",
+        text: "Support Client",
         url: "/contact",
         active: true
       }
     },
     bottomBar: {
-      copyrightText: "All rights reserved.",
-      tagline: "Spiritual guidance for the modern seeker",
+      copyrightText: "Tous droits réservés.",
+      tagline: "Guidance spirituelle pour le chercheur moderne",
       showPaymentMethods: true
     },
     paymentMethods: {
@@ -127,13 +125,8 @@ export default function ModernFooter() {
     }
   };
 
-  // Use API data if available, otherwise use defaults
   const data = footerData || defaultData;
 
-  // Debug log
-  console.log('Rendering with data:', data);
-
-  // Get hover color based on platform
   const getHoverColor = (platform) => {
     switch(platform) {
       case 'instagram': return 'hover:text-pink-600';
@@ -146,7 +139,6 @@ export default function ModernFooter() {
     }
   };
 
-  // Get icon component based on platform
   const getSocialIcon = (platform, className = "w-5 h-5") => {
     switch(platform) {
       case 'instagram': return <Instagram className={className} />;
@@ -159,7 +151,6 @@ export default function ModernFooter() {
     }
   };
 
-  // Sort links by order
   const sortedExploreLinks = data.exploreLinks
     ?.filter(link => link.active)
     ?.sort((a, b) => a.order - b.order) || [];
@@ -177,7 +168,7 @@ export default function ModernFooter() {
       <footer className="bg-gradient-to-b from-gray-50 to-gray-100 border-t border-gray-200 py-10 px-4">
         <div className="max-w-6xl mx-auto flex justify-center items-center">
           <Loader2 className="h-6 w-6 animate-spin" style={{ color: "#C9A24D" }} />
-          <span className="ml-2 text-sm text-gray-600">Loading footer...</span>
+          <span className="ml-2 text-sm text-gray-600">Chargement du pied de page...</span>
         </div>
       </footer>
     );
@@ -188,12 +179,12 @@ export default function ModernFooter() {
       <footer className="bg-gradient-to-b from-gray-50 to-gray-100 border-t border-gray-200 py-10 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <AlertCircle className="h-6 w-6 mx-auto mb-2 text-red-500" />
-          <p className="text-sm text-red-600">Error loading footer: {error}</p>
+          <p className="text-sm text-red-600">Erreur lors du chargement du pied de page: {error}</p>
           <button 
             onClick={fetchFooterData}
             className="mt-2 text-xs text-purple-600 hover:underline"
           >
-            Try again
+            Réessayer
           </button>
         </div>
       </footer>
@@ -222,14 +213,14 @@ export default function ModernFooter() {
                 </h4>
               </div>
               <span className="text-xs font-medium tracking-wider mt-0.5" style={{ color: data.colors?.linkHover || '#7C3AED' }}>
-                {data.company?.tagline || 'SPIRITUAL GUIDANCE'}
+                {data.company?.tagline || 'GUIDANCE SPIRITUELLE'}
               </span>
             </div>
             <p className="text-xs leading-relaxed max-w-xs" style={{ color: data.colors?.link || '#4B5563' }}>
-              {data.company?.description || 'Your trusted source for spiritual guidance, psychic readings, and personal transformation since 2020.'}
+              {data.company?.description || 'Votre source de confiance pour la guidance spirituelle, les lectures psychiques et la transformation personnelle depuis 2020.'}
             </p>
             <div className="space-y-2">
-              <h5 className="text-sm font-medium" style={{ color: data.colors?.text || '#111827' }}>Connect With Us</h5>
+              <h5 className="text-sm font-medium" style={{ color: data.colors?.text || '#111827' }}>Connectez-vous avec nous</h5>
               <div className="flex flex-wrap gap-3">
                 {activeSocialMedia.length > 0 ? (
                   activeSocialMedia.map(([platform, platformData]) => (
@@ -246,7 +237,6 @@ export default function ModernFooter() {
                     </Link>
                   ))
                 ) : (
-                  // Default social media links if none active
                   <>
                     <Link to="https://instagram.com/hecatevoyance" target="_blank" className="text-gray-500 hover:text-pink-600 transition-all hover:scale-110">
                       <Instagram className="w-5 h-5" />
@@ -272,10 +262,10 @@ export default function ModernFooter() {
             </div>
           </div>
 
-          {/* Quick Links - Main Pages */}
+          {/* Quick Links - Main Pages (FRENCH) */}
           <div className="space-y-4">
             <h4 className="text-sm font-semibold uppercase tracking-wider" style={{ color: data.colors?.text || '#111827' }}>
-              Explore
+              Explorer
             </h4>
             <ul className="space-y-2">
               {sortedExploreLinks.length > 0 ? (
@@ -293,21 +283,20 @@ export default function ModernFooter() {
                   </li>
                 ))
               ) : (
-                // Default explore links
                 <>
-                  <li><Link to="/" className="text-sm text-gray-600 hover:text-purple-700">Home</Link></li>
-                  <li><Link to="/about" className="text-sm text-gray-600 hover:text-purple-700">About Us</Link></li>
-                  <li><Link to="/psychics" className="text-sm text-gray-600 hover:text-purple-700">Our Psychics</Link></li>
-                  <li><Link to="/blogs" className="text-sm text-gray-600 hover:text-purple-700">Blogs & Articles</Link></li>
+                  <li><Link to="/accueil" className="text-sm text-gray-600 hover:text-purple-700">Accueil</Link></li>
+                  <li><Link to="/a-propos" className="text-sm text-gray-600 hover:text-purple-700">À Propos</Link></li>
+                  <li><Link to="/nos-mediums" className="text-sm text-gray-600 hover:text-purple-700">Nos Médiums</Link></li>
+                  <li><Link to="/articles" className="text-sm text-gray-600 hover:text-purple-700">Articles</Link></li>
                 </>
               )}
             </ul>
           </div>
 
-          {/* Legal Pages */}
+          {/* Legal Pages (FRENCH) */}
           <div className="space-y-4">
             <h4 className="text-sm font-semibold uppercase tracking-wider" style={{ color: data.colors?.text || '#111827' }}>
-              Legal
+              Légal
             </h4>
             <ul className="space-y-2">
               {sortedLegalLinks.length > 0 ? (
@@ -325,12 +314,14 @@ export default function ModernFooter() {
                   </li>
                 ))
               ) : (
-                <li><Link to="/terms-&-conditions" className="text-sm text-gray-600 hover:text-purple-700">Terms & Conditions</Link></li>
+                <>
+                  <li><Link to="/conditions-generales" className="text-sm text-gray-600 hover:text-purple-700">Conditions Générales</Link></li>
+                </>
               )}
             </ul>
           </div>
 
-          {/* Contact Section */}
+          {/* Contact Section (FRENCH) */}
           <div className="space-y-4">
             <h4 className="text-sm font-semibold uppercase tracking-wider" style={{ color: data.colors?.text || '#111827' }}>
               Contact
@@ -358,27 +349,27 @@ export default function ModernFooter() {
                   onMouseLeave={(e) => e.target.style.color = data.colors?.link || '#4B5563'}
                 >
                   <MessageSquare className="w-4 h-4 group-hover:scale-110 transition-transform" style={{ color: data.colors?.iconColor || '#6B7280' }} />
-                  <span>{data.contact?.support?.text || 'Support'}</span>
+                  <span>{data.contact?.support?.text || 'Support Client'}</span>
                 </Link>
               )}
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Bar (FRENCH) */}
         <div className="mt-10 pt-6 border-t" style={{ borderColor: data.colors?.border || '#E5E7EB' }}>
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-xs" style={{ color: data.colors?.link || '#4B5563' }}>
-              © {currentYear} {data.company?.name || 'HecateVoyance'}. {data.bottomBar?.copyrightText || 'All rights reserved.'} 
+              © {currentYear} {data.company?.name || 'HecateVoyance'}. {data.bottomBar?.copyrightText || 'Tous droits réservés.'} 
               <span className="hidden sm:inline mx-2">•</span>
               <br className="sm:hidden" />
-              {data.bottomBar?.tagline || 'Spiritual guidance for the modern seeker'}
+              {data.bottomBar?.tagline || 'Guidance spirituelle pour le chercheur moderne'}
             </p>
             
-            {/* Payment Methods or Trust Badges */}
+            {/* Payment Methods */}
             {(data.bottomBar?.showPaymentMethods !== false) && (
               <div className="flex items-center gap-3">
-                <span className="text-xs" style={{ color: data.colors?.link || '#4B5563' }}>Secure Payment:</span>
+                <span className="text-xs" style={{ color: data.colors?.link || '#4B5563' }}>Paiement sécurisé :</span>
                 <div className="flex gap-2">
                   {data.paymentMethods?.visa !== false && (
                     <img 
